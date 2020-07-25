@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProjectsTest extends TestCase
+class ManageProjectsTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
@@ -14,6 +14,8 @@ class ProjectsTest extends TestCase
     public function guests_cannot_create_projects()
     {
         // $this->withoutExceptionHandling();
+
+        $this->get('/projects/create')->assertRedirect('login');
 
         $attributes = factory('App\Project')->raw();
 
@@ -40,6 +42,8 @@ class ProjectsTest extends TestCase
         $this->withoutExceptionHandling();
 
         $this->actingAs(factory('App\User')->create());
+
+        $this->get('/projects/create')->assertStatus(200);
 
         $attributes = [
             'title' => $this->faker->sentence,
