@@ -1,34 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Document</title>
-</head>
+@section('content')
+<div>
+    <h1 class="text-2xl uppercase">Create Project</h1>
+    <form action="/projects" method="POST" class="mt-10">
+        @csrf
 
-<body>
-    <div class="container mt-4">
-        <h1>Create Project</h1>
-        <form action="/projects" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" rows="5" class="form-control"></textarea>
-            </div>
+        <label class="block">
+            <span class="text-gray-700">Input</span>
+            <input type="email" class="form-input mt-1 block w-full" placeholder="john@example.com">
+        </label>
 
-            <button type="submit" class="btn btn-success">Submit</button>
+        <label class="block mt-5">
+            <span class="text-gray-700">Textarea</span>
+            <textarea class="form-textarea mt-1 block w-full" rows="3"
+                placeholder="Enter some long form content."></textarea>
+        </label>
 
-        </form>
 
-    </div>
+        <button type="submit"
+            class="bg-purple-600 border py-2 px-4 rounded uppercase text-white w-40 mt-5">Submit</button>
 
-</body>
+    </form>
 
-</html>
+</div>
+
+@endsection
