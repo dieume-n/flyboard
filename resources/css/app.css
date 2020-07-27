@@ -8,3 +8,19 @@
 .card {
     @apply .bg-white .rounded-lg .shadow-md .p-5 .overflow-hidden;
 }
+
+.btn{
+    @apply .bg-indigo-500 .text-white .text-sm .px-4 .py-2 .rounded .shadow-md;
+    
+}
+.btn:focus{
+    @apply .outline-none .shadow-outline;
+}
+
+.btn:hover{
+    @apply .bg-indigo-400;
+}
+
+.btn:active{
+    @apply .bg-indigo-700;
+}

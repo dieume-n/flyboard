@@ -6,10 +6,9 @@
     <div class="flex justify-between  items-center w-full">
         <h2 class="text-gray-700 text-sm font-normal uppercase">My Projects</h2>
 
-        <button
-            class="bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-700 focus:outline-none focus:shadow-outline text-white text-sm px-4 py-2 rounded shadow-md">
+        <a href="/projects/create" class="btn">
             Add Project
-        </button>
+        </a>
     </div>
 
 </div>

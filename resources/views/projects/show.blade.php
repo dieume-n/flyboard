@@ -7,8 +7,7 @@
             <a href="/projects">My Projects</a> / {{ $project->title }}
         </p>
 
-        <button
-            class="bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-700 focus:outline-none focus:shadow-outline text-white text-sm px-4 py-2 rounded shadow-md">
+        <button class="btn">
             Add Project
         </button>
     </div>
@@ -19,11 +18,31 @@
         <div class="w-full lg:w-3/4 px-3">
             <div>
                 <h2 class="text-gray-700 text-md font-normal ">Tasks</h2>
-                <div class="card mt-3">Lorem</div>
-                <div class="card mt-3">Lorem</div>
-                <div class="card mt-3">Lorem</div>
-                <div class="card mt-3">Lorem</div>
-                <div class="card mt-3">Lorem</div>
+
+                @foreach($project->tasks as $task)
+                <div class="card mt-3 text-gray-800">
+                    <form action="{{ $project->path() . '/tasks/' . $task->id }}" method="POST">
+                        @method('PATCH')
+                        @csrf
+                        <div class="flex items-center">
+                            <input type="text" name="body" value="{{ $task->body }}"
+                                class="w-full outline-none focus:outline-none">
+                            <input type="checkbox"
+                                class="form-checkbox h-5 w-5 text-indigo-500 outline-none focus:outline-none active:bg-indigo-700"
+                                onChange="this.form.submit()">
+                        </div>
+
+                    </form>
+                </div>
+                @endforeach
+                <div class="card mt-3">
+                    <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                        @csrf
+                        <input type="text" name="body" placeholder="Add a new task..."
+                            class="online-none focus:outline-none focus:bg-white w-full text-gray-800">
+                    </form>
+                </div>
+
                 {{-- Tasks --}}
             </div>
 
