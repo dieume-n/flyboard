@@ -21,7 +21,7 @@
 
                 @foreach($project->tasks as $task)
                 <div class="card mt-3 text-gray-800">
-                    <form action="{{ $project->path() . '/tasks/' . $task->id }}" method="POST">
+                    <form action="{{ $task->path() }}" method="POST">
                         @method('PATCH')
                         @csrf
                         <div class="flex items-center">
