@@ -6,7 +6,7 @@ use App\User;
 use App\Task;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProjectTasksPolicy
+class TasksPolicy
 {
     use HandlesAuthorization;
 
