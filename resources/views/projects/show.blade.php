@@ -50,7 +50,15 @@
             <div class="mt-8">
                 <h2 class="text-gray-700 text-md font-normal ">General Notes</h2>
                 {{-- General Notes --}}
-                <textarea class="card mt-3 w-full" style="min-height: 200px;">Lorem</textarea>
+                <form action="{{ $project->path() }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <textarea class="card online-none focus:outline-none focus:bg-white mt-3 w-full"
+                        style="min-height: 200px;" name="notes"
+                        placeholder="Anything special that you want to make a note of?">{{ $project->notes }}</textarea>
+                    <button type="submit" class="btn mt-3">Save</button>
+                </form>
+
             </div>
         </div>
         <div class="w-full lg:w-1/4 px-3 mt-6 lg:mt-0">
