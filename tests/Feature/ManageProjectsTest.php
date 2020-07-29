@@ -74,7 +74,27 @@ class ManageProjectsTest extends TestCase
         $project = ProjectFactory::create();
 
         $this->actingAs($project->owner)
-            ->patch($project->path(), $attributes = ['notes' => 'updated notes'])
+            ->patch($project->path(), $attributes = [
+                'title' => 'update title',
+                'description' => 'update description',
+                'notes' => 'updated notes'
+            ])
+            ->assertRedirect($project->path());
+
+        $this->get($project->path() . '/edit')->assertOk();
+
+        $this->assertDatabaseHas('projects', $attributes);
+    }
+
+    /** @test */
+    public function a_user_can_update_a_project_general_notes()
+    {
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)
+            ->patch($project->path(), $attributes = [
+                'notes' => 'updated notes'
+            ])
             ->assertRedirect($project->path());
 
         $this->assertDatabaseHas('projects', $attributes);
@@ -134,6 +154,7 @@ class ManageProjectsTest extends TestCase
 
         $attributes = factory('App\Project')->raw(['description' => '']);
 
-        $this->post('/projects', [])->assertSessionHasErrors('description');
+        $this->post('/projects', $attributes)
+            ->assertSessionHasErrors('description');
     }
 }

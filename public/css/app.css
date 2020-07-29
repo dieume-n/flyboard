@@ -18699,9 +18699,6 @@ video {
 }
 
 .btn{
-  --bg-opacity: 1;
-  background-color: #667eea;
-  background-color: rgba(102, 126, 234, var(--bg-opacity));
   --text-opacity: 1;
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
@@ -18719,16 +18716,40 @@ video {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
-.btn:hover{
+.btn-indigo{
+  --bg-opacity: 1;
+  background-color: #667eea;
+  background-color: rgba(102, 126, 234, var(--bg-opacity))
+}
+
+.btn-indigo:hover{
   --bg-opacity: 1;
   background-color: #7f9cf5;
   background-color: rgba(127, 156, 245, var(--bg-opacity));
 }
 
-.btn:active{
+.btn-indigo:active{
   --bg-opacity: 1;
   background-color: #4c51bf;
   background-color: rgba(76, 81, 191, var(--bg-opacity));
+}
+
+.btn-red{
+  --bg-opacity: 1;
+  background-color: #f56565;
+  background-color: rgba(245, 101, 101, var(--bg-opacity))
+}
+
+.btn-red:hover{
+  --bg-opacity: 1;
+  background-color: #fc8181;
+  background-color: rgba(252, 129, 129, var(--bg-opacity));
+}
+
+.btn-red:active{
+  --bg-opacity: 1;
+  background-color: #c53030;
+  background-color: rgba(197, 48, 48, var(--bg-opacity));
 }
 
 @media (min-width: 640px) {

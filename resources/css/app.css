@@ -10,17 +10,33 @@
 }
 
 .btn{
-    @apply .bg-indigo-500 .text-white .text-sm .px-4 .py-2 .rounded .shadow-md;
+    @apply .text-white .text-sm .px-4 .py-2 .rounded .shadow-md;
     
 }
 .btn:focus{
     @apply .outline-none .shadow-outline;
 }
 
-.btn:hover{
+.btn-indigo{
+    @apply .bg-indigo-500 
+}
+
+.btn-indigo:hover{
     @apply .bg-indigo-400;
 }
 
-.btn:active{
+.btn-indigo:active{
     @apply .bg-indigo-700;
+}
+
+.btn-red{
+    @apply .bg-red-500
+}
+
+.btn-red:hover{
+    @apply .bg-red-400;
+}
+
+.btn-red:active{
+    @apply .bg-red-700;
 }

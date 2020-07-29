@@ -7,9 +7,9 @@
             <a href="/projects">My Projects</a> / {{ $project->title }}
         </p>
 
-        <button class="btn">
-            Add Project
-        </button>
+        <a href="{{ $project->path() .'/edit'}}" class="btn btn-indigo">
+            Edit Project
+        </a>
     </div>
 
 </div>
@@ -53,10 +53,18 @@
                 <form action="{{ $project->path() }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <textarea class="card online-none focus:outline-none focus:bg-white mt-3 w-full"
-                        style="min-height: 200px;" name="notes"
-                        placeholder="Anything special that you want to make a note of?">{{ $project->notes }}</textarea>
-                    <button type="submit" class="btn mt-3">Save</button>
+                    <div>
+                        <textarea
+                            class="card online-none focus:outline-none focus:bg-white mt-3 w-full @error('notes') border-red-500 @enderror"
+                            style="min-height: 200px;" name="notes"
+                            placeholder="Anything special that you want to make a note of?">{{ $project->notes }}</textarea>
+                        @error('description')
+                        <p class="text-red-500 text-xs">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-indigo mt-3">Save</button>
                 </form>
 
             </div>
