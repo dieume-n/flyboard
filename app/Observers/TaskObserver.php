@@ -15,10 +15,7 @@ class TaskObserver
      */
     public function created(Task $task)
     {
-        Activity::create([
-            'project_id' => $task->project->id,
-            'description' => 'created_task'
-        ]);
+        $task->project->recordActivity('created_task');
     }
 
     /**
@@ -31,9 +28,6 @@ class TaskObserver
     {
         if (!$task->completed) return;
 
-        Activity::create([
-            'project_id' => $task->project->id,
-            'description' => 'completed_task'
-        ]);
+        $task->project->recordActivity('completed_task');
     }
 }
