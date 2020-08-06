@@ -19,15 +19,13 @@ class TaskObserver
     }
 
     /**
-     * Handle the task "updated" event.
+     * Handle the task "deleted" event.
      *
      * @param  \App\Task  $task
      * @return void
      */
-    public function updated(Task $task)
+    public function deleted(Task $task)
     {
-        if (!$task->completed) return;
-
-        $task->project->recordActivity('completed_task');
+        $task->project->recordActivity('deleted_task');
     }
 }
