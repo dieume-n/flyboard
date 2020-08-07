@@ -19,9 +19,37 @@ trait RecordActivity
 
     public static function bootRecordActivity()
     {
-        static::updating(function ($model) {
-            $model->oldAttributes = $model->getOriginal();
-        });
+        foreach (static::recordableEvents() as $event) {
+            static::$event(function ($model) use ($event) {
+                $model->recordActivity($model->activityDescription($event));
+            });
+
+            if ($event === 'updated') {
+                static::updating(function ($model) {
+                    $model->oldAttributes = $model->getOriginal();
+                });
+            }
+        }
+    }
+
+    protected function activityDescription($description)
+    {
+        return "{$description}_" . strtolower(class_basename($this));
+    }
+
+    /**
+     * Get Eloquent events from model if exists
+     *  or use defaults created, updated, deleted
+     *
+     *  @return array
+     */
+    protected static function recordableEvents()
+    {
+        if (isset(static::$recordableEvents)) {
+            return static::$recordableEvents;
+        }
+
+        return  ['created', 'updated', 'deleted'];
     }
 
     /**
