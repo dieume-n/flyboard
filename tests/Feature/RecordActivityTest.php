@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Facades\Tests\Setup\ProjectFactory;
 use Tests\TestCase;
+use Facades\Tests\Setup\ProjectFactory;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RecordActivityTest extends TestCase
 {
@@ -46,10 +46,12 @@ class RecordActivityTest extends TestCase
         $project->addTask('test task');
 
         $this->assertCount(2, $project->activities);
-        $this->assertEquals(
-            'created_task',
-            $project->activities->last()->description
-        );
+
+        tap($project->activities->last(), function ($activity) {
+            $this->assertEquals('created_task', $activity->description);
+            $this->assertInstanceOf('App\Task', $activity->subject);
+            $this->assertEquals('test task', $activity->subject->body);
+        });
     }
 
     /** @test */
@@ -66,10 +68,14 @@ class RecordActivityTest extends TestCase
 
         $this->assertCount(3, $project->activities);
 
-        $this->assertEquals(
-            'completed_task',
-            $project->activities->last()->description
-        );
+
+        tap($project->activities->last(), function ($activity) {
+            $this->assertEquals(
+                'completed_task',
+                $activity->description
+            );
+            $this->assertInstanceOf('App\Task', $activity->subject);
+        });
     }
 
     /** @test */
@@ -90,6 +96,10 @@ class RecordActivityTest extends TestCase
             'body' => 'change',
             'completed' => false
         ]);
+
+        tap($project->fresh()->activities->last(), function ($activity) {
+            $this->assertInstanceOf('App\Task', $activity->subject);
+        });
 
         $this->assertCount(4, $project->fresh()->activities);
     }
