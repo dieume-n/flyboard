@@ -2,10 +2,14 @@
 
 namespace App;
 
+use App\Traits\RecordActivity;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordActivity;
+
     protected $guarded = [];
 
     protected $touches = ['project'];
@@ -35,23 +39,5 @@ class Task extends Model
     {
         $this->update(['completed' => false]);
         $this->recordActivity('mark_incomplete');
-    }
-
-    public function activities()
-    {
-        return $this->morphMany(Activity::class, 'subject')->latest();
-    }
-
-    /**
-     *  Record activity for a project
-     *
-     *  @param string $description
-     */
-    public function recordActivity($description)
-    {
-        $this->activities()->create([
-            'project_id' => $this->project->id,
-            'description' => $description
-        ]);
     }
 }
