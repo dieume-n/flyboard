@@ -6,15 +6,23 @@
         <p class="text-gray-700 text-sm font-normal uppercase ">
             <a href="/projects">My Projects</a> / {{ $project->title }}
         </p>
+        <div>
+            <a href="{{ $project->path() .'/edit'}}" class="btn btn-indigo">
+                Edit Project
+            </a>
+            <a href="javascript.void(0)" class="ml-2 btn btn-red" onclick="event.preventDefault();
+            document.getElementById('delete-form').submit();">Delete Project</a>
+            <form id="delete-form" action="{{ $project->path() }}" method="POST" class="hidden">
+                @csrf
+                @method('DELETE')
+            </form>
+        </div>
 
-        <a href="{{ $project->path() .'/edit'}}" class="btn btn-indigo">
-            Edit Project
-        </a>
     </div>
 
 </div>
 <div>
-    <div class="flex flex-wrap -mx-3">
+    <div class=" flex flex-wrap -mx-3">
         <div class="w-full lg:w-3/4 px-3">
             <div>
                 <h2 class="text-gray-700 text-md font-normal ">Tasks</h2>
@@ -28,7 +36,8 @@
                             <input type="text" name="body" value="{{ $task->body }}"
                                 class="w-full outline-none focus:outline-none {{ $task->completed ? 'text-gray-500': 'text-gray-800' }}">
                             <input type="checkbox" name="completed" @if($task->completed) checked @endif
-                            class="form-checkbox h-5 w-5 text-indigo-500 outline-none focus:outline-none focus:bg-white
+                            class="form-checkbox h-5 w-5 text-indigo-500 outline-none focus:outline-none
+                            focus:bg-white
                             active:bg-indigo-700 "
                             onChange="this.form.submit()">
                         </div>
