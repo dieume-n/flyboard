@@ -1,9 +1,17 @@
 <nav class="bg-gray-900">
     <div class="px-4 sm:px6 md:container mx-auto">
         <div class="flex justify-between items-center h-16">
-            <a href="{{ url('/') }}" class="text-white text-xl font-semibold">
-                {{ config('app.name', 'Birdboard') }}
-            </a>
+            <div>
+                <a href="{{ url('/') }}" class="text-white text-xl font-semibold">
+                    {{ config('app.name', 'Birdboard') }}
+                </a>
+
+                <a href="{{ route('projects.index') }}"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700">
+                    Projects
+                </a>
+            </div>
+
 
             <div class="flex items-center">
                 @guest
