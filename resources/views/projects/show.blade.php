@@ -6,7 +6,17 @@
         <p class="text-gray-700 text-sm font-normal uppercase ">
             <a href="/projects">My Projects</a> / {{ $project->title }}
         </p>
-        <div>
+        <div class="flex items-center">
+
+            <div class="flex overflow-hidden mr-4">
+                @foreach ($project->members as $member)
+                <img src="https://gravatar.com/avatar/{{ md5($member->email) }}" alt="{{ $member->name}}'s avatar"
+                    class="{{ $loop->first ? '' : '-ml-3' }} inline-block h-8 w-8 rounded-full text-white shadow-solid">
+                @endforeach
+            </div>
+
+
+
             <a href="{{ $project->path() .'/edit'}}" class="btn btn-indigo">
                 Edit Project
             </a>
