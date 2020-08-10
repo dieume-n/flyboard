@@ -15,6 +15,8 @@ class ProjectInvitationsController extends Controller
         $user = User::where($this->validateInvitation())->first();
 
         $project->invite($user);
+
+        return redirect($project->path());
     }
 
     protected function validateInvitation()

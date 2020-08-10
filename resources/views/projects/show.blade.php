@@ -36,7 +36,7 @@
                         @csrf
                         <div class="flex items-center">
                             <input type="text" name="body" value="{{ $task->body }}"
-                                class="w-full outline-none focus:outline-none {{ $task->completed ? 'text-gray-500': 'text-gray-800' }}">
+                                class="w-full outline-none focus:outline-none {{ $task->completed ? 'text-gray-500 line-through': 'text-gray-800' }}">
                             <input type="checkbox" name="completed" @if($task->completed) checked @endif
                             class="form-checkbox h-5 w-5 text-indigo-500 outline-none focus:outline-none
                             focus:bg-white
@@ -82,6 +82,10 @@
         </div>
         <div class="w-full lg:w-1/4 px-3 mt-6 lg:mt-0">
             @include('projects.card')
+
+            @can('manage', $project)
+            @include('projects.invitation')
+            @endcan
 
             @include("projects.activities.card")
         </div>

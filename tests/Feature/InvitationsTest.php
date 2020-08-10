@@ -20,7 +20,7 @@ class InvitationsTest extends TestCase
 
 
     /** @test */
-    public function a_project_can_invite_a_user()
+    public function a_project_owner_can_invite_a_user()
     {
         $this->withoutExceptionHandling();
 
@@ -31,13 +31,13 @@ class InvitationsTest extends TestCase
         $this->actingAs($project->owner)
             ->post($project->path() . '/invitations', [
                 'email' => $userToInvite->email
-            ]);
+            ])->assertRedirect($project->path());
 
         $this->assertTrue($project->members->contains($userToInvite));
     }
 
     /** @test */
-    public function the_invited_email_address_must_be_a_valid_flyboard_account()
+    public function the_email_address_must_be_a_valid_flyboard_account()
     {
         $project = ProjectFactory::create();
 
