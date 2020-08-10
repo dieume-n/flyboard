@@ -7,7 +7,6 @@
                 </a>
             </div>
 
-
             <div class="flex items-center">
                 @guest
                 <div class="ml-10 flex items-baseline">

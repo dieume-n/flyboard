@@ -40,7 +40,7 @@ class Project extends Model
 
     public function invite(User $user)
     {
-        return $this->members()->attach($user);
+        return $this->members()->sync($user, false);
     }
 
     public function members()

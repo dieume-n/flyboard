@@ -12,6 +12,6 @@ class TasksPolicy
 
     public function update(User $user, Task $task)
     {
-        return $user->is($task->project->owner);
+        return $user->is($task->project->owner) || $task->project->members->contains($user);
     }
 }

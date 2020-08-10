@@ -10,7 +10,6 @@
             Add Project
         </a>
     </div>
-
 </div>
 
 <div class="flex flex-wrap mt-6 -mx-3">
