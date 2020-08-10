@@ -64,6 +64,24 @@ class RecordActivityTest extends TestCase
     }
 
     /** @test */
+    public function creating_a_new_task_as_a_collaborator()
+    {
+        $this->withoutExceptionHandling();
+
+        $owner = factory('App\User')->create();
+
+        tap(ProjectFactory::ownedBy($owner)->create(), function ($project) {
+            $collaborator = $this->signIn();
+
+            $project->invite($collaborator);
+
+            $project->addTask("Some Task");
+
+            $this->assertEquals($project->activities->last()->user_id, $collaborator->id);
+        });
+    }
+
+    /** @test */
     public function completing_a_task()
     {
         $this->withoutExceptionHandling();
