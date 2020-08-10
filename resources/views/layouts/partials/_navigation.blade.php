@@ -37,10 +37,9 @@
                         <button x-on:click="isOpen = !isOpen" x-on:click.away="isOpen = false"
                             class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid"
                             id="user-menu" aria-label="User menu" aria-haspopup="true">
-                            <img class="h-8 w-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="">
-                            <span class="ml-1">{{auth()->user()->name }}</span>
+                            {!! Avatar::create(auth()->user()->name)->setFontSize(16)->setDimension(32)->toSvg() !!}
+
+                            <span class=" ml-2">{{auth()->user()->name }}</span>
                         </button>
                     </div>
                     <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" x-show="isOpen"
