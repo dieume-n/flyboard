@@ -5,11 +5,6 @@
                 <a href="{{ url('/') }}" class="text-white text-xl font-semibold">
                     {{ config('app.name', 'Birdboard') }}
                 </a>
-
-                <a href="{{ route('projects.index') }}"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:text-white focus:bg-gray-700">
-                    Projects
-                </a>
             </div>
 
 
@@ -28,7 +23,7 @@
                     @endif
                 </div>
                 @else
-                <button
+                {{-- <button
                     class="p-1 ml-4 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
                     aria-label="Notifications">
 
@@ -36,7 +31,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
-                </button>
+                </button> --}}
                 {{-- Profile dropdown --}}
                 <div class="ml-4 relative" x-data="{isOpen: false }">
                     <div>
@@ -46,6 +41,7 @@
                             <img class="h-8 w-8 rounded-full"
                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                 alt="">
+                            <span class="ml-1">{{auth()->user()->name }}</span>
                         </button>
                     </div>
                     <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" x-show="isOpen"

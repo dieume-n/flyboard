@@ -35,6 +35,10 @@ class ProjectsController extends Controller
     {
         $project = auth()->user()->projects()->create($this->validateProject());
 
+        if (request()->wantsJson()) {
+            return ['message' => $project->path()];
+        }
+
         return redirect($project->path());
     }
 

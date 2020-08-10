@@ -6,7 +6,7 @@
     <div class="flex justify-between  items-center w-full">
         <h2 class="text-gray-700 text-sm font-normal uppercase">My Projects</h2>
 
-        <a href="/projects/create" class="btn btn-indigo">
+        <a href="/projects/create" class="btn btn-indigo" v-on:click.prevent="$modal.show('new-project')">
             Add Project
         </a>
     </div>
@@ -22,4 +22,7 @@
     <div>No project yet</div>
     @endforelse
 </div>
+
+<new-project-modal></new-project-modal>
+
 @endsection
