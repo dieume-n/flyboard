@@ -15,19 +15,9 @@
                 @endforeach
             </div>
 
-
-
             <a href="{{ $project->path() .'/edit'}}" class="btn btn-indigo">
                 Edit Project
             </a>
-            @can('delete', $project)
-            <a href="javascript.void(0)" class="ml-2 btn btn-red" onclick="event.preventDefault();
-            document.getElementById('delete-form').submit();">Delete Project</a>
-            <form id="delete-form" action="{{ $project->path() }}" method="POST" class="hidden">
-                @csrf
-                @method('DELETE')
-            </form>
-            @endcan
         </div>
 
     </div>

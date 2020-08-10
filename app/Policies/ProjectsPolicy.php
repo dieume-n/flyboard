@@ -10,6 +10,11 @@ class ProjectsPolicy
 {
     use HandlesAuthorization;
 
+    public function manage(User $user, Project $project)
+    {
+        return $user->is($project->owner);
+    }
+
     public function update(User $user, Project $project)
     {
         return $user->is($project->owner);
@@ -20,10 +25,7 @@ class ProjectsPolicy
         return $user->is($project->owner) || $project->members->contains($user);
     }
 
-    public function delete(User $user, Project $project)
-    {
-        return $user->is($project->owner);
-    }
+
 
     public function addTask(User $user, Project $project)
     {
