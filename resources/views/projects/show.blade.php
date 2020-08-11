@@ -12,7 +12,6 @@
                 @foreach ($project->members as $member)
                 <img src="{{ Avatar::create($member->name)->toBase64() }}" alt="{{ $member->name}}'s avatar"
                     class="{{ $loop->first ? '' : '-ml-3' }} inline-block h-8 w-8 rounded-full text-white shadow-solid">
-
                 @endforeach
             </div>
 
